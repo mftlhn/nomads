@@ -1,0 +1,108 @@
+@extends('layout.admin')
+
+@section('content')
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Ubah Paket Travel {{$item->title}} </h1>
+    </div>
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li> {{ $error }} </li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <div class="card shadow">
+        <div class="card-body">
+            <form action="{{ route('travel-package.update', $item->id) }}" method="post">
+                @method('PUT')
+                @csrf
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" class="form-control" name="title" placeholder="Title" value="{{$item->title}}">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="location">Location</label>
+                            <input type="text" class="form-control" name="location" placeholder="Location" value="{{$item->location}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="about">About</label>
+                    <textarea name="about" id="about" rows="5" class="d-block w-100 form-control">{{$item->about }}</textarea>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="featured_event">Featured Event</label>
+                            <input type="text" class="form-control" name="featured_event" placeholder="Featured Event" value="{{$item->featured_event}}">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="language">Language</label>
+                            <input type="text" class="form-control" name="language" placeholder="Language" value="{{$item->language}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="foods">Foods</label>
+                            <input type="text" class="form-control" name="foods" placeholder="Foods" value="{{$item->foods}}">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="departure_date">Departure Date</label>
+                            <input type="date" name="departure_date" id="departure_date" class="form-control" placeholder="Departure Date" value="{{$item->departure_date}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label for="duration">Duration</label>
+                            <input type="text" class="form-control" name="duration" placeholder="Duration" value="{{$item->duration}}">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label for="type">Type</label>
+                            <input type="text" class="form-control" name="type" placeholder="Type" value="{{$item->type}}">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label for="price">Price</label>
+                            <input type="number" class="form-control" name="price" placeholder="Price" value="{{$item->price}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-2 my-3">
+                        <button class="btn btn-primary btn-block" type="submit">Ubah</button>
+                    </div>
+                    <div class="col-lg-2 my-3">
+                        <a href="{{ route('travel-package.index') }}" class="btn btn-info btn-block">Kembali</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+@endsection
